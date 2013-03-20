@@ -3,6 +3,7 @@
  */
 
 var launchpad = require('cosmonaut-launchpad');
+var lifesupport = require('cosmonaut-lifesupport');
 var payload = launchpad.package(__dirname + '/lib/engine.js');
 
 var express = require('express'),
@@ -31,6 +32,11 @@ app.configure('development', function() {
 
 app.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
+});
+
+app.get('/lifesupport.js', function(req, res) {
+  console.log(lifesupport);
+  res.sendfile(lifesupport);
 });
 
 http.createServer(app).listen(app.get('port'), function() {
